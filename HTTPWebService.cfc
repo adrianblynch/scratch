@@ -1,7 +1,11 @@
 component {
 
-	function doSomething() access="remote" {
-		return arraySet([], 1, 10, randRange(100000, 999999));
+	function x() access="remote" {
+		return 123;
+	}
+
+	function getArrays(length) access="remote" {
+		return arraySet([], 1, max(length, 1), true);
 	}
 
 }
