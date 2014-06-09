@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# Run unit tests - Commit on a status code of 200 - Don't commit on anything else
+
+testsURL="https://cp2.retailcloud.net/tests"
+statusCode=$(curl -L --insecure -o /dev/null --silent --head --write-out '%{http_code}\n' $testsURL)
+
+echo "$statusCode"
+
+if [ "$statusCode" == 200 ]; then
+	echo "Tests at $testsURL PASSED"
+	exit 0
+else
+	echo "Tests at $testsURL FAILED - Commit cancelled"
+	exit 1
+fi
